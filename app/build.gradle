@@ -1,0 +1,98 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.hilt.android)
+    id 'kotlin-kapt'
+}
+
+android {
+    namespace 'com.ganesh.hilt.mutualfund.sip.myportfolio'
+    compileSdk 35
+
+    signingConfigs {
+        release {
+            storeFile file('/Users/sujal/Desktop/Workspace/TestData/JKS/TheFashionBon.jks')
+            storePassword 'TheFashionBon'
+            keyAlias 'TheFashionBon'
+            keyPassword 'TheFashionBon'
+        }
+    }
+
+    defaultConfig {
+        applicationId "com.ganesh.hilt.mutualfund.sip.myportfolio"
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "1.0.0"
+
+        multiDexEnabled true
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release // Use lightTheme signing config
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = '11'
+    }
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+        buildConfig true
+    }
+}
+
+kapt {
+    correctErrorTypes true
+}
+
+dependencies {
+
+    implementation libs.androidx.core.ktx
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    implementation libs.androidx.activity
+    implementation libs.androidx.constraintlayout
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+    implementation libs.androidx.core.splashscreen
+
+    implementation libs.hilt.android
+    kapt libs.hilt.compiler
+
+    // For Loading Images
+    implementation libs.glide
+
+    // Scaled dp to show same size view in different screen
+    implementation libs.sdp.android
+
+    // Swipe to refresh data/list
+    implementation libs.androidx.swiperefreshlayout
+
+
+    // Room Database
+    implementation libs.androidx.room.runtime
+    kapt libs.room.compiler
+    implementation libs.androidx.room.ktx
+
+    implementation libs.androidx.lifecycle.livedata.ktx
+    implementation libs.androidx.lifecycle.viewmodel.ktx
+
+    implementation libs.gson
+    implementation libs.retrofit
+    implementation libs.converter.gson
+
+}
