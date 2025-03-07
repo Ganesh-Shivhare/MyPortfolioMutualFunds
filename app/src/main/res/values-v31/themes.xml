@@ -1,0 +1,9 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.SplashActivity" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#383839</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+<!--        <item name="android:windowSplashScreenBrandingImage">@drawable/branding_image</item>-->
+        <item name="postSplashScreenTheme">@style/Base.Theme.MyPortfolio</item>
+    </style>
+</resources>
