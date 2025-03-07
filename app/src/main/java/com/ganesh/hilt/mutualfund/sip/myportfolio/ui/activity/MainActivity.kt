@@ -32,10 +32,22 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initObserver() {
-        portfolioDataBaseViewModel.notifications.observe(this) { notifications ->
-            binding.txtNoDataFound.isVisible = notifications.isEmpty()
-            Log.d("MainActivity", "FCM Token: ${notifications.size}")
-            adapter.submitList(notifications)
+        portfolioDataBaseViewModel.notifications.observe(this) { portfolioEntityList ->
+            binding.txtNoDataFound.isVisible = portfolioEntityList.isEmpty()
+
+            portfolioEntityList.forEachIndexed { index, portfolioEntity ->
+                Log.d("TAG_scheme_details", "initObserver:schemeCode " + portfolioEntity.schemeCode)
+                mfDataViewModel.getSchemeResults(portfolioEntity) { it ->
+                    it.onSuccess {
+                        adapter.updateIndex(
+                            index,
+                            mfDataViewModel.getMonthlyNAVSum(it.data!!, portfolioEntity)
+                        )
+                    }
+                }
+            }
+
+            adapter.submitList(portfolioEntityList)
         }
     }
 }

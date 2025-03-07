@@ -72,8 +72,9 @@ class AddNewSchemeActivity : BaseActivity() {
                 } else {
                     val portfolioEntity = PortfolioEntity()
                     portfolioEntity.schemeName = selectedScheme.schemeName ?: ""
+                    portfolioEntity.schemeCode = selectedScheme.schemeCode.toString()
                     portfolioEntity.date = selectedDate
-                    portfolioEntity.firstInvestment = investmentAmount
+                    portfolioEntity.firstInvestment = investmentAmount.toDouble()
 
                     portfolioDataBaseViewModel.insertPortfolio(portfolioEntity)
                     finish()

@@ -9,8 +9,7 @@ import com.ganesh.hilt.mutualfund.sip.myportfolio.db.PortfolioEntity
 import com.ganesh.hilt.mutualfund.sip.myportfolio.utils.formatDate
 import com.ganesh.hilt.mutualfund.sip.myportfolio.utils.formatIndianCurrency
 
-class PortfolioAdapter :
-    RecyclerView.Adapter<PortfolioAdapter.ViewHolder>() {
+class PortfolioAdapter : RecyclerView.Adapter<PortfolioAdapter.ViewHolder>() {
 
     private val portfolioEntities = mutableListOf<PortfolioEntity>()
 
@@ -44,10 +43,13 @@ class PortfolioAdapter :
     }
 
     override fun getItemCount(): Int = portfolioEntities.size
+    fun updateIndex(index: Int, monthlyNAVSum: PortfolioEntity) {
+        portfolioEntities[index] = monthlyNAVSum
+        notifyItemChanged(index)
+    }
 
     inner class UserDiffCallback(
-        private val oldList: List<PortfolioEntity>,
-        private val newList: List<PortfolioEntity>
+        private val oldList: List<PortfolioEntity>, private val newList: List<PortfolioEntity>
     ) : DiffUtil.Callback() {
 
         override fun getOldListSize(): Int = oldList.size

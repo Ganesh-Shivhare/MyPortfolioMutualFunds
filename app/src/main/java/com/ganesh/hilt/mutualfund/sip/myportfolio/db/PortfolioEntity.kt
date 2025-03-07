@@ -11,8 +11,8 @@ data class PortfolioEntity(
     @SerializedName("schemeCode") @Expose var schemeCode: String = "",
     @SerializedName("schemeName") @Expose var schemeName: String = "",
     @SerializedName("date") @Expose var date: Long = 0,
-    @SerializedName("firstInvestment") @Expose var firstInvestment: Long = 0,
-    @SerializedName("totalInvestment") @Expose var totalInvestment: Long = 0,
-    @SerializedName("totalReturn") @Expose var totalReturn: Long = 0,
-    @SerializedName("interestRate") @Expose var interestRate: Long = 0,
+    @SerializedName("firstInvestment") @Expose var firstInvestment: Double = 0.0,
+    @SerializedName("totalInvestment") @Expose var totalInvestment: Double = 0.0,
+    @SerializedName("totalReturn") @Expose var totalReturn: Double = 0.0,
+    @SerializedName("interestRate") @Expose var interestRate: Double = 0.0,
 )

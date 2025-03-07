@@ -5,6 +5,8 @@ import android.content.Context
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import com.ganesh.hilt.mutualfund.sip.myportfolio.MyApplication.Companion.myApplication
+import java.math.BigDecimal
+import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
@@ -25,9 +27,15 @@ fun Long.formatDate(): String {
     return sdf.format(Date(this))
 }
 
-fun Long.formatIndianCurrency(): String {
+fun Double.formatIndianCurrency(): String {
     val formatter = NumberFormat.getNumberInstance(Locale("en", "IN")) as DecimalFormat
     return "₹ ${formatter.format(this)}"
+}
+
+fun Double.keep2DecimalPoints(): Double {
+    return BigDecimal(this).setScale(
+        2, RoundingMode.HALF_EVEN
+    ).toDouble()
 }
 
 fun calculateInterest(

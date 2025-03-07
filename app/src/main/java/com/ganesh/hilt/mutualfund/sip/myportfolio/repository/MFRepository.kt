@@ -1,5 +1,6 @@
 package com.ganesh.hilt.mutualfund.sip.myportfolio.repository
 
+import android.util.Log
 import com.ganesh.hilt.mutualfund.sip.myportfolio.di.APIService
 import com.ganesh.hilt.mutualfund.sip.myportfolio.di.MFSchemeDataModel
 import com.ganesh.hilt.mutualfund.sip.myportfolio.di.MFSchemeNameModel
@@ -36,7 +37,11 @@ class MFRepository @Inject constructor(private val apiService: APIService) {
                 call: Call<MFSchemeDataModel>, response: Response<MFSchemeDataModel>
             ) {
                 val responseData = response.body()
-                result(Result.success(responseData!!))
+                Log.d("TAG_scheme_details", "getSchemeResults:schemeCode $q")
+                Log.d("TAG_scheme_details", "getSchemeResults: $responseData")
+                responseData?.let {
+                    result(Result.success(it))
+                }
             }
 
             override fun onFailure(call: Call<MFSchemeDataModel>, t: Throwable) {

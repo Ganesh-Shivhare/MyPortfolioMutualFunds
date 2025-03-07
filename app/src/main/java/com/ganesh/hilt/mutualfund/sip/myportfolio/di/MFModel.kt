@@ -34,7 +34,7 @@ data class SchemeData(
 
     @SerializedName("nav")
     @Expose
-    val nav: String? = null
+    val nav: Double = 0.0
 )
 
 

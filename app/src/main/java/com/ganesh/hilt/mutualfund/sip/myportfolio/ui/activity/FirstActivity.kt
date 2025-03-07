@@ -34,7 +34,7 @@ class FirstActivity : BaseActivity() {
                         content.getViewTreeObserver().removeOnPreDrawListener(this)
 
                         startActivity(Intent(this@FirstActivity, MainActivity::class.java))
-
+                        finish()
                         return true
                     } else {
                         // The content is not ready; suspend.
